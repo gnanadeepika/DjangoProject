@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block head%}
+<title>Details</title>
+{% endblock %}
+
+{% block body%}
+    <div class="container">
+        <br>
+        <H2>Product Details</H2>
+        <br>
+        <h4>Product name   : {{product.name}}</h4>
+        {%if product.picture%}
+        <img src="{{product.picture.url}}" width="250">
+        {% endif %}
+        <h4>Price    :{{product.price}}</h4>
+        <h4>Description:{{product.description}}</h4>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button type="submit">Add to cart</button>
+        </form>
+        <h4>{{text}}</h4>
+    </div>
+{% endblock %}

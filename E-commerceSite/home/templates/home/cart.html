@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+{% block head%}
+<title>Cart</title>
+{% endblock %}
+
+{% block body%}
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        {% if cartProducts %}
+            {%  for cart_product in cartProducts  %}
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <a href="{% url 'home:detail' cart_product.cproduct.id  %}">
+							<img src="{{cart_product.cproduct.picture.url}}" class="img-responsive" style="width:350px;height:250px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                            <h5>Name {{ cart_product.cproduct.name }}</h5>
+                            <h5>Price Rs.{{ cart_product.cproduct.price }}</h5>
+                            <h5>Quanity {{ cart_product.quantity }}</h5>
+                    </div>
+                    <div class="col-sm-4">
+                        <br>
+                        <a href="{% url 'home:delete_product' pk=cart_product.pk%}"><button type="button" class="btn btn-warning">Remove </button></a>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        {% endif %}
+        <br>
+
+        <h3 align="right">Total:: {{total}}</h3>
+    </div>
+
+{% endblock %}
